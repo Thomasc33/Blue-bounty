@@ -1,11 +1,11 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import noteService from "../services/note.service"
 import '../css/Note.css'
 
 function NotePage(props) {
     let note = JSON.parse(localStorage.getItem('ToEdit'));
-    const history = useHistory()
+    const nav = useNavigate()
 
     console.log(note)
 
@@ -19,7 +19,7 @@ function NotePage(props) {
             //logic for adding
             await noteService.add(localStorage.username, localStorage.uid, title, text)
         }
-        history.push('/')
+        nav('/')
     }
 
     const deleteButtonClick = async () => {
@@ -27,7 +27,7 @@ function NotePage(props) {
             //logic for deleting
             await noteService.delete(note.id)
         } //no else needed, returns to home if not saved and no note anyways
-        history.push('/')
+        nav('/')
     }
 
     const commentButtonClick = async () => {

@@ -1,4 +1,5 @@
 import Particles from "react-tsparticles"
+import React from 'react'
 
 function ParticlesElement() {
     return (

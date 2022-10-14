@@ -1,5 +1,5 @@
 import React from "react"
-import { Redirect } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import "../css/Login.css"
 import userService from "../services/user.service"
 
@@ -66,7 +66,7 @@ class LoginPage extends React.Component {
             await sleep(300)
             this.setState({ loggedIn: true })
             window.location.reload(false)
-            return <Redirect to='/' />
+            return <Navigate to='/' />
         }
     }
     SUAnimation() {
@@ -78,7 +78,7 @@ class LoginPage extends React.Component {
         container.classList.remove("right-panel-active");
     }
     render() {
-        if (this.state.loggedIn) return <Redirect to='/' />
+        if (this.state.loggedIn) return <Navigate to='/' />
 
         return (
             <div className="container" id="container">

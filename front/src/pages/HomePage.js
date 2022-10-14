@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import NoteService from '../services/note.service'
 import "../css/Home.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const stringSimilarity = require('string-similarity')
 
@@ -11,7 +11,7 @@ function HomePage() {
     const [notes, setNotes] = useState(null);
     const [comments, setComments] = useState(null);
     const [searching, setSearching] = useState(null)
-    const history = useHistory();
+    const navigate = useNavigate();
     let refreshInterval
 
     useEffect(() => {
@@ -41,7 +41,7 @@ function HomePage() {
         setTimeout(() => {
             localStorage.removeItem('ToEdit') //i want to find a better way of doing this, but I can't figure anything out rn
         }, 1000)
-        history.push('/note')
+        navigate('/note')
     }
 
     const displayComments = async note => {

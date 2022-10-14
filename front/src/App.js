@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  Switch,
+  Routes,
   Route,
-  Redirect,
+  Navigate,
   BrowserRouter,
 } from "react-router-dom";
 import HomePage from "./pages/HomePage"
@@ -17,11 +17,11 @@ function App() {
     <BrowserRouter>
       <ParticlesElement />
       {Auth() ? (
-        <Switch>
+        <Routes>
           <Route exact path='/note' render={props => <NotePage {...props} />} />
           <Route exact path="/logout" render={props => <LogOut {...props} />} />
           <Route exact path="/" render={props => <HomePage {...props} />} />
-        </Switch>
+        </Routes>
       ) : (
           <LoginPage />
         )}
@@ -53,11 +53,11 @@ function App() {
   } else if (auth === 1) {
     return (<BrowserRouter>
       <ParticlesElement />
-      <Switch>
+      <Routes>
         <Route exact path='/note' render={props => <NotePage {...props} />} />
         <Route exact path="/logout" render={props => <LogOut {...props} />} />
         <Route exact path="/" render={props => <HomePage {...props} />} />
-      </Switch>
+      </Routes>
     </BrowserRouter>
     )
   } else return (
@@ -77,7 +77,7 @@ function Auth() {
 function LogOut() {
   localStorage.clear()
   window.location.reload(false)
-  return <Redirect to='/' />
+  return <Navigate to='/' />
 }
 
 export default App;
